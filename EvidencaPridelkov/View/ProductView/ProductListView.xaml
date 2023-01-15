@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EvidencaPridelkov.View.ProductView.ProductListView"
+             xmlns:models="clr-namespace:EvidencaPridelkov.Models"
+             xmlns:viewModels="clr-namespace:EvidencaPridelkov.ViewModels"
+             Title="ProductListView">
+    <VerticalStackLayout>
+        <Label 
+            Text="Pridelki"
+            Margin="10"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            FontSize="Header"/>
+
+        <Button Text="Dodaj pridelek" Command="{Binding AddUpdateProductBtn}" HorizontalOptions="EndAndExpand" />
+
+        <CollectionView x:Name="listProuktov" ItemsSource="{Binding Products}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Black" CornerRadius="10" Padding="5,5,5,10" Margin="20,10,20,15" BackgroundColor="#c0d6e4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0" Grid.RowSpan="2" VerticalOptions="Center">
+                                <Label 
+                                    Text="{Binding Name}"
+                                    FontSize="Title"
+                                    TextColor="Black"        
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center"/>
+
+                                <Frame Padding="10" Margin="10,5,10,0" BorderColor="Black" CornerRadius="10">
+                                    <Label 
+                                        Text="{Binding Unit}"
+                                        FontSize="Body"
+                                        TextColor="Black"        
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="Center"/>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" Grid.Row="0">
+                                <Label
+                                Text="Zaloga"
+                                FontSize="18"
+                                TextColor="Black"        
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+
+                                <Label
+                                Text="{Binding Quantity}"
+                                FontSize="Body"
+                                TextColor="Black"        
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" Grid.Row="1">
+                                <Label
+                                Text="Prodano"
+                                FontSize="18"
+                                TextColor="Black"        
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+
+                                <Label
+                                Text="{Binding Sold_quantity}"
+                                FontSize="Body"
+                                TextColor="Black"        
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ProductViewModel}},Path=ItemTappedCommand}"
+                                                  CommandParameter="{Binding .}" />
+                            <SwipeGestureRecognizer Direction="Right, Left"  Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ProductViewModel}},Path=ItemSwipedCommand}"
+                                                  CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
