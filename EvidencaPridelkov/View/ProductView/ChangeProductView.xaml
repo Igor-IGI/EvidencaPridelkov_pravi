@@ -4,7 +4,8 @@
              x:Class="EvidencaPridelkov.View.ProductView.ChangeProductView"
              Title="ChangeProductView">
 
-    <VerticalStackLayout>
+
+    <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -203,5 +204,6 @@
             WidthRequest="100"
             Command="{Binding SaveChangetProductBtn}"/>
         </Grid>
-    </VerticalStackLayout>
+
+    </ScrollView>
 </ContentPage>
