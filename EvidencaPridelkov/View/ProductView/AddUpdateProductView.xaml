@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EvidencaPridelkov.View.ProductView.AddUpdateProductView"
+             Title="AddUpdateProductView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>    
+
+        <VerticalStackLayout Grid.Row="1" BackgroundColor="AliceBlue">
+
+            <!--Product name-->
+            <Label 
+                Text="Naziv"
+                Margin="25,0,0,0"
+                FontSize="20"/>
+
+            <Border 
+                Margin="20,0,20,0"
+                StrokeThickness="2"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                Padding="15,0,0,0">
+
+                <Entry                             
+                    x:Name="inpName"
+                    Placeholder="Vnesite ime"
+                    PlaceholderColor="Gray"
+                    MaximumHeightRequest="40"
+                    Text="{Binding Product.Name}"/>
+            </Border>
+
+            <!--Product unit-->
+            <Label 
+                Text="Enota"
+                Margin="25,30,0,0"
+                FontSize="20"/>
+
+
+            <Border 
+                Margin="20,0,20,0"
+                StrokeThickness="2"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                Padding="15,0,0,0">
+
+                <!--<Picker           
+                    Margin="20,0,20,0"
+                    x:Name="pickerUnit" 
+                    Title="Izberite enoto" 
+                    FontSize="18"          
+                    MaximumHeightRequest="40"
+                    ItemsSource="{Binding MyUnits}"/>-->
+                <Entry                             
+                    x:Name="inpUnit"
+                    Placeholder="Vnesite enoto"
+                    PlaceholderColor="Gray"
+                    MaximumHeightRequest="40"
+                    Text="{Binding Product.Unit}"/>
+            </Border>
+
+            <!--Product min limit alarm-->
+            <Label 
+                Text="Minimalna meja za opozorilo"
+                Margin="25,30,0,0"
+                FontSize="20"/>
+            <Border 
+                Margin="20,0,20,0"
+                Padding="15,0,0,0"
+                StrokeThickness="2"
+                StrokeShape="RoundRectangle 10,10,10,10">
+                
+                <Entry                     
+                    x:Name="inpMinLimit"
+                    Placeholder="Vnesite minimalno vrednost za alarm"
+                    PlaceholderColor="Gray"                 
+                    MaximumHeightRequest="40"
+                    Text="{Binding Product.Min_qt_limit}"/>
+            </Border>
+        </VerticalStackLayout>
+
+        <Button
+            x:Name="addChangeBtn" 
+            Command="{Binding AddUpdateProductBtn}"
+            Text="Click"
+            Grid.Row="2"
+            HeightRequest="50"
+            MaximumHeightRequest="50"
+            WidthRequest="150"/>
+    </Grid>
+</ContentPage>
